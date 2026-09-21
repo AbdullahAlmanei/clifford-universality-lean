@@ -1,0 +1,17 @@
+\section{Overview}
+
+This blueprint documents the Lean formalization of distance-independent
+approximate universality of the Clifford+T gate set.  For every $n$-qubit
+unitary $U$, every $\epsilon>0$, and every projective distance satisfying the
+four stated laws, the final theorem constructs a finite circuit over embedded
+$C(X)$, Hadamard, and $T$ gates whose distance from $U$ is less than
+$\epsilon$.
+
+The proof first gives exact synthesis up to global phase over
+$\{C(X),H,S,S^\dagger,R_z(\theta)\}$, rewrites the Clifford phase gates using
+$T$, approximates each remaining $R_z$ with an $\{H,T\}$ circuit using only
+the abstract distance laws, and controls the accumulated error by abstract
+subadditivity.  Projective Hilbert--Schmidt distance is then recovered as a
+proved instance.  Every node in this focused blueprint is proved and the
+final theorem's axiom closure is exactly
+\texttt{[propext, Classical.choice, Quot.sound]}.

@@ -1,0 +1,23 @@
+\section{Top 100 statement}
+
+\begin{theorem}[Universality of quantum gate sets]
+  \label{thm:top100_clifford_t}
+  \lean{TwoControl.Top100.clifford_t_is_an_approximately_universal_quantum_gate_set}
+  \leanok
+  Let $n\geq 0$, let $U$ be a $2^n\times 2^n$ unitary matrix, let
+  $\epsilon>0$, and let $d$ be any projective distance satisfying
+  reflexivity, global-phase consistency, multiplicative subadditivity, and
+  continuity along Hermitian one-parameter evolutions.  There is a finite
+  circuit $C$ over embedded CNOT, Hadamard, and $T$ gates such that
+  \[
+    d(U,C)<\epsilon.
+  \]
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  \uses{thm:clifford_t_universal}
+  This is the Top-100-facing presentation of the proved distance-independent
+  Clifford+T universality theorem.  The projective Hilbert--Schmidt result is
+  a corollary obtained from its proved instance of the four laws.
+\end{proof}

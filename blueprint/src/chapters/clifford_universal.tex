@@ -1,0 +1,97 @@
+\section{Distance-independent Clifford+T universality}
+\label{sec:universal}
+
+This section assembles the exact synthesis theorem and the $\{H,T\}$ density
+argument without fixing a formula for distance.  Hilbert--Schmidt distance is
+used only afterward, as one proved instance of the abstract interface.
+
+\begin{definition}[Projective distance interface]
+  \label{def:projective_distance}
+  \lean{TwoControl.Clifford.Universal.ProjectiveDistanceMeasure}
+  \leanok
+  A projective distance measure $d$ is a nonnegative real-valued function on
+  pairs of matrices which, on unitaries, is reflexive, is consistent under
+  independent global phases, is subadditive under multiplication, and is
+  continuous along every Hermitian one-parameter evolution
+  $t\mapsto\exp(i\pi tA)$.
+\end{definition}
+
+\begin{lemma}[Distance-independent embedded $R_z$ approximation]
+  \label{lem:rz_embedded_approx_projective}
+  \lean{TwoControl.Clifford.Universal.embedded_rz_approximation_by_clifford_t_projective}
+  \leanok
+  Let $R$ be an embedded $R_z(\theta)$ gate and let $\epsilon>0$.  For every
+  projective distance measure $d$ on the ambient register, there is a circuit
+  $C$ over $\{C(X),H,T\}$ such that $d(R,C)<\epsilon$.
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  \uses{thm:lemma12_projective, def:embedded_one, def:projective_distance}
+  Pull the ambient distance back along the star-algebra homomorphism which
+  embeds the target wire.  The four laws are preserved by this pullback.
+  Apply the positive-power $G_1/G_2$ density argument to the resulting
+  one-qubit distance and map the circuit back through the same embedding.
+  Thus no invariance under tensor padding is assumed.
+\end{proof}
+
+\begin{lemma}[Abstract circuit replacement]
+  \label{lem:rz_replacement_projective}
+  \lean{TwoControl.Clifford.Universal.clifford_rz_synthesis_approximates_by_clifford_t_projective}
+  \leanok
+  If $U$ is synthesized up to global phase over
+  $\{C(X),H,T,R_z(\theta)\}$, then for every $\epsilon>0$ and every projective
+  distance measure $d$, there is a Clifford+T circuit $C$ with
+  $d(U,C)<\epsilon$.
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  \uses{lem:rz_embedded_approx_projective, def:projective_distance,
+        def:gate_cliffordtrz}
+  For a circuit with $k$ factors, replace each factor within
+  $\delta=\epsilon/(k+1)$.  Reflexivity handles factors already in
+  Clifford+T, multiplication subadditivity bounds the accumulated error by
+  $k\delta<\epsilon$, and global-phase consistency transfers the estimate
+  from the exact synthesis to $U$.
+\end{proof}
+
+\begin{theorem}[Distance-independent Clifford+T universality]
+  \label{thm:clifford_t_universal}
+  \lean{TwoControl.Clifford.Universal.clifford_t_is_universal_projective}
+  \leanok
+  Let $n\geq0$, let $U$ be a $2^n\times2^n$ unitary, let $\epsilon>0$, and
+  let $d$ satisfy the projective distance interface.  Then there is a circuit
+  $C$ over $\{C(X),H,T\}$ such that
+  \[
+    d(U,C)<\epsilon.
+  \]
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  \uses{thm:clifford_rz_universal, thm:clifford_rz_to_t_rz,
+        lem:rz_replacement_projective}
+  For $n\geq1$, synthesize $U$ exactly up to global phase over
+  $\{C(X),H,S,S^\dagger,R_z\}$, rewrite $S=T^2$ and $S^\dagger=T^6$, and
+  invoke abstract circuit replacement.  For $n=0$, every unitary is globally
+  phase-equivalent to the empty circuit, so consistency and reflexivity give
+  distance zero.
+\end{proof}
+
+\begin{corollary}[Hilbert--Schmidt specialization]
+  \label{cor:clifford_t_universal_hs}
+  \lean{TwoControl.Clifford.Universal.clifford_t_is_universal_hs_via_projective}
+  \leanok
+  The conclusion of Theorem~\ref{thm:clifford_t_universal} holds for the
+  projective Hilbert--Schmidt distance.
+\end{corollary}
+
+\begin{proof}
+  \leanok
+  \uses{thm:clifford_t_universal, def:hs_distance,
+        def:projective_distance}
+  The Hilbert--Schmidt development proves nonnegativity and each of the four
+  abstract laws, packages them as a projective distance measure, and applies
+  the distance-independent theorem.
+\end{proof}
