@@ -2,7 +2,7 @@
 usemathjax: true
 ---
 
-# Distance-Agnostic Clifford+T Universality
+# Distance-Independent Clifford+T Universality
 
 **Clifford+T approximates every finite-qubit unitary operation arbitrarily
 well for every projective distance measure that satisfies the stated laws.**

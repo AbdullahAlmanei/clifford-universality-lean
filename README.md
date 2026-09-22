@@ -62,7 +62,7 @@ exact Clifford+Rz synthesis
   -> S = T^2 and S^dagger = T^6
   -> H,T approximation of each Rz under the distance laws
   -> circuit error accumulation by multiplicative subadditivity
-  -> distance-agnostic Clifford+T universality
+  -> distance-independent Clifford+T universality
 ```
 
 ## Source map

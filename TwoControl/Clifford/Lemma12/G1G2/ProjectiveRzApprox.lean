@@ -14,7 +14,7 @@ open Universal
 /-!
 # Distance-independent approximation of `R_z`
 
-This is the metric-agnostic form of the `G₁/G₂` density argument.  It
+This is the distance-independent form of the `G₁/G₂` density argument.  It
 uses only the four laws in `ProjectiveDistanceMeasure`; in particular, no
 formula for Hilbert--Schmidt distance occurs below.
 -/
