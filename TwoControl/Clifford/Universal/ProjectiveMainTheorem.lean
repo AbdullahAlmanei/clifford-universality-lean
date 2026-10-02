@@ -187,8 +187,8 @@ private theorem zero_qubit_clifford_t_is_universal_projective
 
 /-- **Distance-independent universality of Clifford+T.**
 
-For every projective distance satisfying reflexivity, global-phase
-consistency, multiplicative subadditivity, and continuity along Hermitian
+For every projective distance satisfying reflexivity, projective invariance,
+multiplicative subadditivity, and continuity along Hermitian
 one-parameter evolutions, Clifford+T approximates every finite-qubit unitary
 arbitrarily accurately. -/
 theorem clifford_t_is_universal_projective {n : ℕ}

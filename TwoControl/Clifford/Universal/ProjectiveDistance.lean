@@ -29,7 +29,9 @@ structure ProjectiveDistanceMeasure (N : ℕ) where
   nonnegative : ∀ U V, 0 ≤ distance U V
   reflexivity : ∀ U,
     U ∈ Matrix.unitaryGroup (Fin N) ℂ → distance U U = 0
-  consistency : ∀ U₁ U₂ V₁ V₂,
+  /-- Projective Invariance: independent global-phase changes in either
+  argument preserve the distance. -/
+  projective_invariance : ∀ U₁ U₂ V₁ V₂,
     U₁ ∈ Matrix.unitaryGroup (Fin N) ℂ →
     U₂ ∈ Matrix.unitaryGroup (Fin N) ℂ →
     V₁ ∈ Matrix.unitaryGroup (Fin N) ℂ →
@@ -62,7 +64,7 @@ theorem eq_zero_of_equivalent {N : ℕ} (d : ProjectiveDistanceMeasure N)
     d U V = 0 := by
   calc
     d U V = d V V :=
-      d.consistency U V V V hU hV hV hV hUV (GlobalPhaseEquivalent.refl V)
+      d.projective_invariance U V V V hU hV hV hV hUV (GlobalPhaseEquivalent.refl V)
     _ = 0 := d.reflexivity V hV
 
 theorem eq_of_equivalent_left {N : ℕ} (d : ProjectiveDistanceMeasure N)
@@ -72,7 +74,7 @@ theorem eq_of_equivalent_left {N : ℕ} (d : ProjectiveDistanceMeasure N)
     (hW : W ∈ Matrix.unitaryGroup (Fin N) ℂ)
     (hUV : GlobalPhaseEquivalent U V) :
     d U W = d V W :=
-  d.consistency U V W W hU hV hW hW hUV (GlobalPhaseEquivalent.refl W)
+  d.projective_invariance U V W W hU hV hW hW hUV (GlobalPhaseEquivalent.refl W)
 
 theorem eq_of_equivalent_right {N : ℕ} (d : ProjectiveDistanceMeasure N)
     {U V W : Square N}
@@ -81,7 +83,7 @@ theorem eq_of_equivalent_right {N : ℕ} (d : ProjectiveDistanceMeasure N)
     (hW : W ∈ Matrix.unitaryGroup (Fin N) ℂ)
     (hVW : GlobalPhaseEquivalent V W) :
     d U V = d U W :=
-  d.consistency U U V W hU hU hV hW (GlobalPhaseEquivalent.refl U) hVW
+  d.projective_invariance U U V W hU hU hV hW (GlobalPhaseEquivalent.refl U) hVW
 
 private theorem StarAlgHom.map_mem_unitaryGroup {M N : ℕ}
     (f : Square M →⋆ₐ[ℂ] Square N) {U : Square M}
@@ -110,8 +112,8 @@ noncomputable def comap {M N : ℕ} (d : ProjectiveDistanceMeasure N)
   distance U V := d (f U) (f V)
   nonnegative U V := d.nonnegative (f U) (f V)
   reflexivity U hU := d.reflexivity (f U) (StarAlgHom.map_mem_unitaryGroup f hU)
-  consistency U₁ U₂ V₁ V₂ hU₁ hU₂ hV₁ hV₂ hU hV :=
-    d.consistency (f U₁) (f U₂) (f V₁) (f V₂)
+  projective_invariance U₁ U₂ V₁ V₂ hU₁ hU₂ hV₁ hV₂ hU hV :=
+    d.projective_invariance (f U₁) (f U₂) (f V₁) (f V₂)
       (StarAlgHom.map_mem_unitaryGroup f hU₁)
       (StarAlgHom.map_mem_unitaryGroup f hU₂)
       (StarAlgHom.map_mem_unitaryGroup f hV₁)

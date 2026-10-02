@@ -603,7 +603,7 @@ theorem hsDistance_nonnegative {N : ℕ} (U V : Square N) :
     0 ≤ hsDistance U V :=
   Real.sqrt_nonneg _
 
-theorem hsDistance_consistency {N : ℕ}
+theorem hsDistance_projective_invariance {N : ℕ}
     {U₁ U₂ V₁ V₂ : Square N}
     (hU : GlobalPhaseEquivalent U₁ U₂)
     (hV : GlobalPhaseEquivalent V₁ V₂) :
@@ -682,8 +682,8 @@ noncomputable def hsProjectiveDistanceMeasure {N : ℕ} (hN : 0 < N) :
   distance := hsDistance
   nonnegative := hsDistance_nonnegative
   reflexivity := hsDistance_self hN
-  consistency U₁ U₂ V₁ V₂ _ _ _ _ hU hV :=
-    hsDistance_consistency hU hV
+  projective_invariance U₁ U₂ V₁ V₂ _ _ _ _ hU hV :=
+    hsDistance_projective_invariance hU hV
   subadditivity := hsDistance_mul_le hN
   continuity := hsDistance_hermitianEvolution_continuity hN
 

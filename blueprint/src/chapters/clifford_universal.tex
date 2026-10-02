@@ -10,9 +10,9 @@ used only afterward, as one proved instance of the abstract interface.
   \lean{TwoControl.Clifford.Universal.ProjectiveDistanceMeasure}
   \leanok
   A projective distance measure $d$ is a nonnegative real-valued function on
-  pairs of matrices which, on unitaries, is reflexive, is consistent under
-  independent global phases, is subadditive under multiplication, and is
-  continuous along every Hermitian one-parameter evolution
+  pairs of matrices which, on unitaries, is reflexive, satisfies projective
+  invariance under independent global phases, is subadditive under
+  multiplication, and is continuous along every Hermitian one-parameter evolution
   $t\mapsto\exp(i\pi tA)$.
 \end{definition}
 
@@ -52,7 +52,7 @@ used only afterward, as one proved instance of the abstract interface.
   For a circuit with $k$ factors, replace each factor within
   $\delta=\epsilon/(k+1)$.  Reflexivity handles factors already in
   Clifford+T, multiplication subadditivity bounds the accumulated error by
-  $k\delta<\epsilon$, and global-phase consistency transfers the estimate
+  $k\delta<\epsilon$, and projective invariance transfers the estimate
   from the exact synthesis to $U$.
 \end{proof}
 
@@ -75,8 +75,8 @@ used only afterward, as one proved instance of the abstract interface.
   For $n\geq1$, synthesize $U$ exactly up to global phase over
   $\{C(X),H,S,S^\dagger,R_z\}$, rewrite $S=T^2$ and $S^\dagger=T^6$, and
   invoke abstract circuit replacement.  For $n=0$, every unitary is globally
-  phase-equivalent to the empty circuit, so consistency and reflexivity give
-  distance zero.
+  phase-equivalent to the empty circuit, so projective invariance and
+  reflexivity give distance zero.
 \end{proof}
 
 \begin{corollary}[Hilbert--Schmidt specialization]

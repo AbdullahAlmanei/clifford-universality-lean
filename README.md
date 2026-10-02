@@ -43,7 +43,7 @@ real numbers and has four properties. Write
 `E_A(t) = exp(i * t * π * A)`.
 
 - **Reflexivity.** `d U U = 0`.
-- **Consistency.** If `U₁ ∼ U₂` and `V₁ ∼ V₂`, then
+- **Projective Invariance.** If `U₁ ∼ U₂` and `V₁ ∼ V₂`, then
   `d U₁ V₁ = d U₂ V₂`.
 - **Subadditivity.** `d (U₁ * U₂) (V₁ * V₂)` is at most
   `d U₁ V₁ + d U₂ V₂`.
